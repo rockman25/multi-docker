@@ -14,6 +14,9 @@ after_success:
   - docker build -t rockman25/multi-server ./server
   - docker build -t rockman25/multi-worker ./worker
   # Log into to docker CLI
-  
+  - echo "$DOCKER_PASSWORD"  | docker login -u "$DOCKER_ID" --password-stdin
   # Take images and push to docker hub
-
+  - docker push rockman25/multi-client
+  - docker push rockman25/multi-nginx
+  - docker push rockman25/multi-server
+  - docker push rockman25/multi-worker
